@@ -1,0 +1,6 @@
+<div class="comment write-comment">
+  <img [src]="'../../assets' + currentUser.image.png" class="image comm_img" />
+  <textarea class="write" autosize [(ngModel)]="text"></textarea>
+  <button class="btn btn-send" (click)="add()">Send</button>
+</div>
+

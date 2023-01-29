@@ -1,0 +1,48 @@
+.comment {
+    background-color: hsl(0, 0%, 100%);
+    min-height: 120px;
+    width: 700px;
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+  }
+  .write-comment {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .write {
+    margin-top: 25px;
+    min-width: 65%;
+    min-height: 80px;
+    resize: none;
+    border: 1px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-top: 1em;
+  }
+  .btn {
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+    color: white;
+    background-color: hsl(238, 40%, 52%);
+    border: none;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-top: 25px;
+  }
+  
+  .comm_img {
+    margin-left: 20px;
+    margin-top: 25px;
+  }
+  .btn:hover {
+    filter: opacity(70%);
+  }

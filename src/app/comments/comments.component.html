@@ -1,0 +1,105 @@
+<div *ngFor="let comment of comments">
+  <div class="comment" id="comment_{{ comment.id }}">
+    <div class="left">
+      <div class="counter">
+        <button class="plus" (click)="addScore(comment.id, true)">+</button>
+        <p class="num">{{ comment.score }}</p>
+        <button class="minus" (click)="reduceScore(comment.id, true)">-</button>
+      </div>
+    </div>
+    <div class="aside">
+      <div class="identity">
+        <img [src]="'../../assets' + comment.user.image.png" class="image" />
+        <h4 class="name">{{ comment.user.username }}</h4>
+        <h4 class="you" *ngIf="comment.user.username === currentUser.username">
+          you
+        </h4>
+        <h4 class="time">{{ comment.createdAt }}</h4>
+
+        <div
+          class="delete"
+          *ngIf="comment.user.username === currentUser.username"
+          (click)="delete(comment.id,true)"
+        >
+          <img src="../assets/images/icon-delete.svg" class="delete_icon" >
+          <h4 class="delete-text">delete</h4>
+        </div>
+        <div
+          class="edit"
+          *ngIf="comment.user.username === currentUser.username"
+          (click)="editButton(comment.id,true)"
+        >
+          <img src="../assets/images/icon-edit.svg" class="edit_icon" />
+          <h4 class="edit_text">edit</h4>
+        </div>
+        <div
+          class="reply"
+          *ngIf="comment.user.username !== currentUser.username"
+          (click)="reply(comment.id)"
+        >
+          <img src="../assets/images/icon-reply.svg" class="reply_icon" />
+          <h4 class="reply_text">reply</h4>
+        </div>
+      </div>
+      <div class="text">{{ comment.content }}</div>
+    </div>
+  </div>
+  <div class="comment write-comment" *ngIf="idNumber == comment.id && sent">
+    <img
+      [src]="'../../assets' + currentUser.image.png"
+      class="image comm_img"
+    />
+    <textarea class="write" autosize [(ngModel)]="text"></textarea>
+    <button class="btn " (click)="addReplyComment(comment.id)">
+      Send
+    </button>
+  </div>
+
+  <div class="comment reply_comment" *ngFor="let replyItem of comment.replies">
+    <app-reply
+      [replyItem]="replyItem"
+      [reply]="reply"
+      [currentUser]="currentUser"
+      [addScore]="addScore"
+      [comment]="comment"
+      [reduceScore]="reduceScore"
+      [addScore]="addScore"
+      [comments]="comments"
+      [addReplyComment]="addReplyComment"
+      [delete]="delete"
+      [editButton]="editButton"
+      [upgReplyShow]="upgReplyShow"
+     
+    ></app-reply>
+  </div>
+</div>
+<!-- edit comment -->
+<div *ngIf="upgShow">
+  <div class="comment my-comment">
+    <div class="left">
+      <div class="counter">
+        <button class="plus">+</button>
+        <p class="num">{{upgradeScore}}</p>
+        <button class="minus">-</button>
+      </div>
+    </div>
+    <div class="aside">
+      <div class="identity">
+        <img [src]="'../../assets' + currentUser.image.png" class="image" />
+        <h4 class="name">{{currentUser.username}}</h4>
+        <h4 class="you">you</h4>
+        <h4 class="time">now</h4>
+        <div class="delete">
+          <img src="../assets/images/icon-delete.svg" class="delete_icon" />
+          <h4 class="delete-text">delete</h4>
+        </div>
+        <div class="edit">
+          <img src="../assets/images/icon-edit.svg" class="edit_icon" />
+          <h4 class="edit_text">edit</h4>
+        </div>
+      </div>
+      <textarea class="edit_com text">{{ upgradeText}}</textarea>
+      <button class="btn upg_btn" (click)="upgradeButton()">Upgrade</button>
+    </div>
+  </div>
+  </div>
